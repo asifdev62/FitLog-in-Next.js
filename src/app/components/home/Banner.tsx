@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import Library from './Library';
 
 const Banner = () => {
     return (
@@ -21,6 +22,8 @@ const Banner = () => {
                 alt='banner-photo' width={400} height={200} className='h-auto max-h-120 object-contain'></Image>
             </div>
         </div>
+
+        <Library></Library>
        </section>
     );
 };
