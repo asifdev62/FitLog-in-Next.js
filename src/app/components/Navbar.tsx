@@ -12,26 +12,26 @@ const Navbar = () => {
                     <Image src="/logo.webp" alt='fitlog logo' width={120} height={40} className='h-auto w-22.5 sm:w-30'></Image>
                 </div>
 
-                <div className='hidden items-center gap-4 text-sm font-semibold text-blue-900 md:flex'>
+                <div className='hidden items-center gap-4 text-sm font-semibold text-red-700 md:flex'>
 
-                    <a className='bg-blue-100 rounded-full px-3 py-1' href="">Workouts</a>
+                    <a className='bg-red-100 rounded-full px-3 py-1' href="">Workouts</a>
 
                     <a href="">My Plan</a>
                 </div>
 
-                <div className='hidden gap-6 text-blue-900 font-semibold md:flex'>
+                <div className='hidden gap-6 text-red-700 font-semibold md:flex'>
                     <a href="">Plan</a>
                     <a href="">Saved</a>
                 </div>
 
-                <button onClick={() => setIsOpen(!isOpen)} className='text-xl text-blue-900 md:hidden' aria-label="Toggle menu">
+                <button onClick={() => setIsOpen(!isOpen)} className='text-xl text-red-700 md:hidden' aria-label="Toggle menu">
                     {isOpen ? <FaTimes /> : <FaBars />}
                 </button>
             </div>
             {isOpen && (
                 <div className='border-t border-gray-100 pb-4 pt-4 md:hidden'>
-                    <div className='flex flex-col gap-3 text-sm font-semibold text-blue-900'>
-                        <a className='rounded-lg bg-blue-100 px-4 py-2' href="" onClick={() => setIsOpen(false)}>Workouts</a>
+                    <div className='flex flex-col gap-3 text-sm font-semibold text-red-700'>
+                        <a className='rounded-lg bg-red-100 px-4 py-2' href="" onClick={() => setIsOpen(false)}>Workouts</a>
 
                         <a className='px-4 py-2' onClick={() => setIsOpen(false)} href="">Plan</a>
 
