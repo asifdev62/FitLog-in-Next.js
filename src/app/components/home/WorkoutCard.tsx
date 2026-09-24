@@ -1,5 +1,6 @@
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { FaClock, FaFire, FaStar } from 'react-icons/fa';
 
@@ -9,6 +10,7 @@ interface WorkoutCardProps {
 const WorkoutCard = ({ workout }: WorkoutCardProps) => {
     return (
 
+        <Link href={`/Workout/${workout.id}`}>
         <div className="card w-full bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
             <figure className="relative h-52 w-full sm:h-56">
                 <Image src={workout.image}
@@ -41,9 +43,10 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                             <span className="font-semibold"> {workout.rating} </span>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
+        </Link>
 
     );
 };

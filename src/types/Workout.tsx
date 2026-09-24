@@ -11,5 +11,5 @@ export interface Workout{
     "reps": number,
     "rating": number,
     "description": string,
-    "instruction":string[]
+    "instructions":string[]
 }
