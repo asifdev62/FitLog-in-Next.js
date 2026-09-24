@@ -1,15 +1,30 @@
-import React from 'react';
-import WorkoutCard from './WorkoutCard';
+"use client";
 import { Workout } from '@/types/Workout';
+import WorkoutCard from './WorkoutCard';
+import { useState } from 'react';
 
-const getWorkout = async()=>{
-    const response = await fetch('http://localhost:3000/data.json')
-    const data = await response.json();
-    return data;
-};
-const Workouts = async () => {
-    const workoutsData = await getWorkout();
-    console.log(workoutsData)
+interface WorkoutsProps{
+    workout: Workout[];
+}
+
+const Workouts = ({workout}: WorkoutsProps) => {
+   const [sortBy, setStortBy] = useState("duration");
+   
+   const sortedWorkouts = [...workout].sort((a, b) =>{
+    if(sortBy === "duration"){
+        return a.duration - b.duration;
+    }
+
+    if(sortBy === "calories"){
+        return a.caloriesBurned - b.caloriesBurned
+    }
+
+    if(sortBy === "rating"){
+        return b.rating - a.rating;
+    }
+
+    return 0;
+   });
     return (
         <div>
             <div className='mt-25'>
@@ -21,7 +36,7 @@ const Workouts = async () => {
            
                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
                  {
-                   workoutsData.map((workout => {
+                   sortedWorkouts.map((workout => {
                     return <WorkoutCard key={workout.id}workout={workout}></WorkoutCard>
                    })) 
                 }

@@ -23,7 +23,7 @@ const Banner = () => {
             </div>
         </div>
 
-        <Library></Library>
+        
        </section>
     );
 };

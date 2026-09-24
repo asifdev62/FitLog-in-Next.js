@@ -1,6 +1,8 @@
+
+import { getWorkoutById } from '@/lib/api';
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
-import React from 'react';
+import { notFound } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
 import { MdOutlineBookmarkAdd, MdOutlineSaveAlt } from 'react-icons/md';
 
@@ -10,20 +12,16 @@ interface WorkoutDetailsPageProps {
     }>;
 };
 
-const getWorkout = async () => {
-    const response = await fetch('http://localhost:3000/data.json')
-    const data = await response.json();
-    return data;
-};
-
 
 const page = async ({ params }: WorkoutDetailsPageProps) => {
     const { id } = await params;
-    const workoutsData = await getWorkout();
-    const workout = workoutsData.find((workout: Workout) => String(workout.id) === String(id),
-) as Workout;
+    let workout: Workout;
+    try{
+      workout = await getWorkoutById(id);
 
-    console.log(workout)
+    }catch{
+      notFound();
+    }
     return (
        <div className=" sm:px-6 lg:px-10 py-10">
   <div className="rounded-2xl overflow-hidden shadow-xl bg-blue-200">
