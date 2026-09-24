@@ -1,11 +1,15 @@
 // 
 'use client';
+import { useWorkout } from '@/context/WorkoutContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const {plan, saved} = useWorkout();
     return (
         <nav className='border-b border-gray-200 px-4 sm:px-6'>
             <div className='mx-auto flex max-w-7xl items-center justify-between py-4'>
@@ -15,14 +19,28 @@ const Navbar = () => {
 
                 <div className='hidden items-center gap-4 text-sm font-semibold text-red-700 md:flex'>
 
-                    <Link className='hover:bg-red-100 rounded-full px-3 py-1' href="/">Workouts</Link>
+                        <Link className='hover:bg-red-100 rounded-full px-3 py-1' href="/">Workouts</Link>
 
                     <Link className='hover:bg-red-100 rounded-full px-3 py-1' href="/Plan">My Plan</Link>
                 </div>
 
                 <div className='hidden gap-6 text-red-700 font-semibold md:flex'>
-                    <a href="">Plan</a>
-                    <a href="">Saved</a>
+
+
+                   <div className='flex gap-1 items-center'>
+                     <Link href="/Plan">
+                    Plan
+                    </Link>
+                    <span className='bg-red-100 rounded-full px-2 py-0.5 text-xs'>{plan.length}</span>
+                   </div>
+
+                   <div className='flex gap-1 items-center'>
+                     <Link href="">
+                    Saved
+                    </Link>
+
+                    <span className='bg-red-100 rounded-full px-2 py-0.5 text-xs'>{saved.length}</span>
+                   </div>
                 </div>
 
                 <button onClick={() => setIsOpen(!isOpen)} className='text-xl text-red-700 md:hidden' aria-label="Toggle menu">
