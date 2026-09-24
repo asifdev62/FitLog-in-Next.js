@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Library from './Library';
+import Library from './Workouts';
 
 const Banner = () => {
     return (
