@@ -7,8 +7,8 @@ interface WorkoutsProps{
 
 const Workouts = ({workout}: WorkoutsProps) => {
     return (
-        <div>
-            <div className='mt-25'>
+        <div className='p-15'>
+            <div className='mt-10'>
                 <h2 className='uppercase text-4xl font-bold text-gray-800'>The Library</h2>
 
                 <p className='text-gray-500 font-semibold text-sm mt-2 '>Twelve lifts covering every major muscle group.</p>

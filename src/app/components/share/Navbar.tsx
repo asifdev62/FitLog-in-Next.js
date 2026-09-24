@@ -1,6 +1,7 @@
 // 
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 const Navbar = () => {
@@ -14,9 +15,9 @@ const Navbar = () => {
 
                 <div className='hidden items-center gap-4 text-sm font-semibold text-red-700 md:flex'>
 
-                    <a className='bg-red-100 rounded-full px-3 py-1' href="">Workouts</a>
+                    <Link className='hover:bg-red-100 rounded-full px-3 py-1' href="/">Workouts</Link>
 
-                    <a href="/Plan">My Plan</a>
+                    <Link className='hover:bg-red-100 rounded-full px-3 py-1' href="/Plan">My Plan</Link>
                 </div>
 
                 <div className='hidden gap-6 text-red-700 font-semibold md:flex'>
