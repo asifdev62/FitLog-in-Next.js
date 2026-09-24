@@ -1,11 +1,10 @@
 
+import WorkoutAction from '@/app/components/home/WorkoutAction';
 import { getWorkoutById } from '@/lib/api';
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
-import { MdOutlineBookmarkAdd, MdOutlineSaveAlt } from 'react-icons/md';
-
 interface WorkoutDetailsPageProps {
     params: Promise<{
         id: string
@@ -28,7 +27,7 @@ const page = async ({ params }: WorkoutDetailsPageProps) => {
 
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
 
-      {/* Image */}
+   
       <div>
         <Image
           src={workout.image}
@@ -40,20 +39,19 @@ const page = async ({ params }: WorkoutDetailsPageProps) => {
       </div>
 
      <div className='p-6'>
-         {/* Content */}
+    
       <div className="text-white bg-blue-200">
 
-        {/* Title */}
         <h1 className="text-3xl lg:text-4xl font-bold uppercase mb-3 text-gray-800">
           {workout.name}
         </h1>
 
-        {/* Description */}
+    
         <p className="text-gray-600 text-sm leading-6 mb-5">
           {workout.description}
         </p>
 
-        {/* Muscle Groups */}
+     
         <div className="flex flex-wrap gap-2 mb-6">
           {workout.muscleGroups.map((muscle) => (
             <span
@@ -65,7 +63,7 @@ const page = async ({ params }: WorkoutDetailsPageProps) => {
           ))}
         </div>
 
-        {/* Workout Information */}
+       
         <div className=" bg-blue-100 border border-gray-300 rounded-xl overflow-hidden">
 
           <div className="flex justify-between px-4 py-4 border-b border-gray-300">
@@ -158,21 +156,9 @@ const page = async ({ params }: WorkoutDetailsPageProps) => {
           </ol>
         </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-7">
-
-          <button className="bg-red-700 hover:bg-red-900 font-bold px-6 py-3 rounded-lg transition flex items-center justify-center gap-2">
-    
-                <MdOutlineBookmarkAdd />
-                <p>Add to today&apos;s plan</p>
-          </button>
-
-          <button className="border border-red-700 hover:bg-blue-100 text-red-700 px-6 py-3 rounded-lg transition font-bold flex items-center justify-center gap-3">
-            <MdOutlineSaveAlt />
-            <p>Save for later</p>
-          </button>
-
-        </div>
+         <div className='p-6'>
+          <WorkoutAction workout={workout}></WorkoutAction>
+         </div>
 
       </div>
      </div>

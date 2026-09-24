@@ -16,7 +16,7 @@ const Navbar = () => {
 
                     <a className='bg-red-100 rounded-full px-3 py-1' href="">Workouts</a>
 
-                    <a href="">My Plan</a>
+                    <a href="/Plan">My Plan</a>
                 </div>
 
                 <div className='hidden gap-6 text-red-700 font-semibold md:flex'>

@@ -36,7 +36,7 @@ children: ReactNode;
             return [];
         }
 
-        const data = localStorage.getItems("fitlog-saved");
+        const data = localStorage.getItem("fitlog-saved");
 
         return data ? JSON.parse(data):[];
     });
@@ -47,7 +47,7 @@ children: ReactNode;
 
 
     useEffect(()=>{
-        localStorage.setItem("fitlog-plan", JSON.stringify(saved));
+        localStorage.setItem("fitlog-saved", JSON.stringify(saved));
     },[saved]);
 
 

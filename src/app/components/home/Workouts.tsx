@@ -1,30 +1,11 @@
 "use client";
 import { Workout } from '@/types/Workout';
 import WorkoutCard from './WorkoutCard';
-import { useState } from 'react';
-
 interface WorkoutsProps{
     workout: Workout[];
 }
 
 const Workouts = ({workout}: WorkoutsProps) => {
-   const [sortBy, setStortBy] = useState("duration");
-   
-   const sortedWorkouts = [...workout].sort((a, b) =>{
-    if(sortBy === "duration"){
-        return a.duration - b.duration;
-    }
-
-    if(sortBy === "calories"){
-        return a.caloriesBurned - b.caloriesBurned
-    }
-
-    if(sortBy === "rating"){
-        return b.rating - a.rating;
-    }
-
-    return 0;
-   });
     return (
         <div>
             <div className='mt-25'>
@@ -36,7 +17,7 @@ const Workouts = ({workout}: WorkoutsProps) => {
            
                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
                  {
-                   sortedWorkouts.map((workout => {
+                   workout.map((workout => {
                     return <WorkoutCard key={workout.id}workout={workout}></WorkoutCard>
                    })) 
                 }
