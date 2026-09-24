@@ -1,4 +1,6 @@
 import React from 'react';
+import WorkoutCard from './WorkoutCard';
+import { Workout } from '@/types/Workout';
 
 const getWorkout = async()=>{
     const response = await fetch('http://localhost:3000/data.json')
@@ -10,17 +12,19 @@ const Workouts = async () => {
     console.log(workoutsData)
     return (
         <div>
-            <div className='mt-15'>
-                <h2 className='uppercase text-2xl font-bold text-gray-800'>The Library</h2>
-                <p className='text-gray-500 font-semibold text-xm'>Twelve lifts covering every major muscle group.</p>
+            <div className='mt-25'>
+                <h2 className='uppercase text-4xl font-bold text-gray-800'>The Library</h2>
+                <p className='text-gray-500 font-semibold text-sm mt-2 '>Twelve lifts covering every major muscle group.</p>
             </div>
 
            
-                {
+               <div className='grid grid-cols-3 gap-6 mt-12'>
+                 {
                    workoutsData.map((workout => {
-                    return <div key={workout.id}>{workout.name}</div>
+                    return <WorkoutCard key={workout.id}workout={workout}></WorkoutCard>
                    })) 
                 }
+               </div>
            
         </div>
     );
