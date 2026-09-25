@@ -57,10 +57,9 @@ const PlanPage = () => {
         <main className='min-h-screen px-4 py-16 sm:px-6 lg:px-10'>
 
             <div className='mx-auto max-w-6xl'>
-                <div>
-                    <h1 className='mt-2 text-4xl font-black text-gray-800 uppercase'>My Plan</h1>
+                <div><h1 className='text-4xl uppercase font-extrabold text-gray-800'>M<span className='text-red-800'>y</span> Pl<span className='text-red-800'>a</span>n</h1>
 
-                    <p className='text-gray-500 mt-2 text-xl'>Cap of five lifts for today. Finish them, then load more.</p>
+                    <p className='text-gray-500 mt-2 text-xm font-semibold'>Cap of five lifts for today. Finish them, then load more.</p>
                 </div>
 
                 <div className='mt-8 grid grid-cols-3 bg-blue-200 items-center rounded-xl'>
@@ -121,7 +120,7 @@ const PlanPage = () => {
 
                 {currentData.length === 0 ? (
 
-                    <div className="py-24 text-center bg-blue-200 mt-10 rounded-xl">
+                    <div className="py-24 text-center bg-blue-200 mt-10 rounded-xl border border-dashed border-blue-500">
 
                         <h2 className="text-3xl font-black text-gray-800 uppercase">
                             Nothing Here Yet

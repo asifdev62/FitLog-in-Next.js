@@ -1,8 +1,6 @@
 "use client";
 import { Workout } from '@/types/Workout';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-
 interface WorkoutContextType {
     plan: Workout[];
     saved: Workout[];
@@ -53,7 +51,6 @@ children: ReactNode;
 
     const addToPlan = (workout: Workout) =>{
         if(plan.length >= 5){
-            toast.error("Today's plan can contain maximum 5 workouts.");
             return;
         }
 
@@ -62,17 +59,14 @@ children: ReactNode;
         );
 
         if(alreadyExists){
-            toast.error("workout already added");
             return;
         }
 
         setPlan((prev) => [...prev, workout]);
-        toast.success("Added to today's plan.");
     };
 
     const removeFromPlan = (id: number) =>{
         setPlan((prev) => prev.filter((item) => item.id !== id));
-        toast.success("workout remove from plan.");
     };
 
     const saveWorkout = (workout: Workout) =>{
@@ -81,23 +75,19 @@ children: ReactNode;
         );
 
         if(alreadySaved){
-            toast.error("workout already saved.");
             return;
         }
         setSaved((prev) => [...prev, workout]);
-        toast.success("Workout saved for later.");
     };
 
     const removeSaved = (id:number) =>{
         setSaved((prev) => prev.filter((item) => item.id !== id));
 
-        toast.success("Remove from saved.");
     };
 
     const markAsDone = (id: number) => {
         setPlan((prev) => prev.filter((item)=> item.id !== id));
 
-        toast.success("Workout marked as done.");
     };
      return (
         <WorkoutContext.Provider value={{
