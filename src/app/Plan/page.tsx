@@ -3,10 +3,10 @@ import { useWorkout } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import { toast } from 'react-toastify';
-
+import toast from "react-hot-toast";
 const PlanPage = () => {
     const {
         plan,
@@ -16,7 +16,10 @@ const PlanPage = () => {
         markAsDone,
         addToPlan,
     } = useWorkout();
-    const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+
+    const searchParams = useSearchParams();
+    const activeTab = searchParams.get("tab") === "saved" ? "saved" : "plan"
+
 
     const currentData = activeTab === "plan" ? plan : saved;
 
@@ -38,7 +41,7 @@ const PlanPage = () => {
 
     const handleRemoveSaved = (id: number) => {
         removeSaved(id);
-        toast.success("Workout remove from saved");
+        toast.success("Workout removed from saved");
     };
 
     const handleAdd = (workout: Workout) => {
@@ -93,25 +96,25 @@ const PlanPage = () => {
 
                 <div className="mt-20 flex w-full max-w-md gap-2 rounded-xl border border-gray-200 bg-red-200 p-1">
 
-                    <button
-                        onClick={() => setActiveTab("plan")}
-                        className={`flex-1 rounded-lg px-5 py-3 font-bold transition ${activeTab === "plan"
+                    <Link
+                        href="/Plan?tab=plan"
+                        className={`flex-1 rounded-lg px-5 py-3 font-bold text-center transition ${activeTab === "plan"
                                 ? "bg-red-800 text-white shadow"
                                 : "text-gray-800 hover:text-white"
                             }`}
                     >
                         Today&apos;s Plan
-                    </button>
+                    </Link>
 
-                    <button
-                        onClick={() => setActiveTab("saved")}
-                        className={`flex-1 rounded-lg px-5 py-3 font-bold transition ${activeTab === "saved"
+                    <Link
+                        href="/Plan?tab=saved"
+                        className={`flex-1 rounded-lg px-5 py-3 text-center font-bold transition ${activeTab === "saved"
                                 ? "bg-red-800 text-white shadow"
                                 : "text-gray-800 hover:text-white"
                             }`}
                     >
                         Saved
-                    </button>
+                    </Link>
 
                 </div>
 

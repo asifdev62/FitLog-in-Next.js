@@ -29,12 +29,12 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                 <div className="flex flex-wrap gap-2"> {workout.muscleGroups.map((muscle) => (<span key={muscle} className="text-xs font-medium bg-red-50 text-red-700 px-3 py-1 rounded-full" >
                     {muscle} </span>))} </div>
 
-                <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mt-2"> {workout.name} </h2>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-800 mt-2"> {workout.name} </h2>
 
                 <h3 className='text-sm font-medium text-gray-500 mt-1'>{workout.equipment}</h3>
 
                 <div className="border-t border-gray-200 mt-5 pt-4">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-semibold">
 
                         <div className="flex items-center gap-2 text-sm text-gray-600">
                             <FaClock className="text-red-500 shrink-0" />

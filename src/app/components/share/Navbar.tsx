@@ -28,14 +28,14 @@ const Navbar = () => {
 
 
                    <div className='flex gap-1 items-center'>
-                     <Link href="/Plan">
+                     <Link href="/Plan?tab=plan">
                     Plan
                     </Link>
                     <span className='bg-red-100 rounded-full px-2 py-0.5 text-xs'>{plan.length}</span>
                    </div>
 
                    <div className='flex gap-1 items-center'>
-                     <Link href="">
+                     <Link href="/Plan?tab=saved">
                     Saved
                     </Link>
 
