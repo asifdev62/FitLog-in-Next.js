@@ -57,7 +57,7 @@ const WorkoutAction = ({workout}: WorkoutActionProps) => {
         <div className='flex flex-col gap-3 sm:flex-row'>
 
             <button onClick={handleAddPlan} disabled={plan.length >= 5} 
-           className='rounded-lg bg-red-700 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:coursor-not-allowed disabled:opacity-40'>
+           className='rounded-lg bg-red-800 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:coursor-not-allowed disabled:opacity-40'>
 
             {alreadyInPlan ? "Already in Plan" : "Add to Today's Plan"}
             </button>

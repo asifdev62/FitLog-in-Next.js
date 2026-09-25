@@ -19,14 +19,14 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                     fill className="object-cover" />
 
                 <div className="absolute top-3 right-3">
-                    <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
+                    <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">
                         {workout.difficulty} </span>
                 </div> </figure>
 
 
             <div className="p-4 sm:p-5">
 
-                <div className="flex flex-wrap gap-2"> {workout.muscleGroups.map((muscle) => (<span key={muscle} className="text-xs font-medium bg-red-50 text-red-700 px-3 py-1 rounded-full" >
+                <div className="flex flex-wrap gap-2"> {workout.muscleGroups.map((muscle) => (<span key={muscle} className="text-xs font-medium bg-red-100 text-red-800 px-3 py-1 rounded-full" >
                     {muscle} </span>))} </div>
 
                 <h2 className="text-lg sm:text-xl font-bold text-gray-800 mt-2"> {workout.name} </h2>
@@ -37,13 +37,13 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 font-semibold">
 
                         <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <FaClock className="text-red-500 shrink-0" />
+                            <FaClock className="text-red-700 shrink-0" />
                             <span>{workout.duration} min</span> </div>
 
-                        <div className="flex items-center gap-2 text-sm text-gray-600"> <FaFire className="text-red-500 shrink-0" /> <span>{workout.caloriesBurned} kcal</span>
+                        <div className="flex items-center gap-2 text-sm text-gray-600"> <FaFire className="text-red-700 shrink-0" /> <span>{workout.caloriesBurned} kcal</span>
                         </div>
 
-                        <div className="flex items-center gap-2 text-sm text-gray-600"> <FaStar className="text-red-500 shrink-0" />
+                        <div className="flex items-center gap-2 text-sm text-gray-600"> <FaStar className="text-red-700 shrink-0" />
                             <span className="font-semibold"> {workout.rating} </span>
                         </div>
                     </div>

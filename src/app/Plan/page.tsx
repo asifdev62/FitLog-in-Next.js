@@ -197,7 +197,7 @@ const PlanPage = () => {
 
                                     <Link
                                         href={`/Workout/${workout.id}`}
-                                        className="rounded-lg border bg-red-700 border-gray-300 px-4 py-2 text-sm hover:bg-red-900 font-bold text-white"
+                                        className="rounded-lg border bg-red-800 border-gray-300 px-4 py-2 text-sm hover:bg-red-900 font-bold text-white"
                                     >
                                         View Details
                                     </Link>
@@ -208,7 +208,7 @@ const PlanPage = () => {
                                             onClick={() =>
                                                 handleDone(workout.id)
                                             }
-                                            className="rounded-lg bg-blue-100 px-4 py-2 text-sm font-bold border border-gray-400 text-gray-800 hover:bg-blue-300"
+                                            className="rounded-lg bg-blue-100 px-4 py-2 text-sm font-bold border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white"
                                         >
                                             Mark as Done
                                         </button>
@@ -232,7 +232,7 @@ const PlanPage = () => {
                                                 ? handleRemovePlan(workout.id)
                                                 : handleRemoveSaved(workout.id)
                                         }
-                                        className="rounded-lg border border-red-700 px-4 py-2 text-sm font-bold bg-blue-100 text-red-700 hover:bg-blue-300"
+                                        className="rounded-lg border border-gray-800 px-4 py-2 text-sm font-bold bg-blue-100 text-red-800 hover:bg-gray-800 hover:text-white"
                                     >
                                         X
                                     </button>
