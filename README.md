@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FitLog
 
-## Getting Started
+A modern workout planning application built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+FitLog allows users to explore workouts, view detailed exercise information, create a daily workout plan, save workouts for later, and organize their workouts based on duration, calories, and rating.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Live Website: [Add your Vercel link]
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Repository: [(https://github.com/asifdev62/FitLog-in-Next.js.git)]
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- Browse workouts from the workout library
+- View detailed information for each workout
+- Add workouts to Today's Plan
+- Save workouts for later
+- Remove workouts from the plan or saved list
+- Mark planned workouts as completed
+- Add a maximum of 5 workouts to the daily plan
+- Sort workouts by duration, calories, or rating
+- Calculate total workout duration
+- Calculate total calories
+- Store plan and saved workouts using localStorage
+- Responsive design for mobile, tablet, and desktop
+- Toast notifications for user actions
 
-To learn more about Next.js, take a look at the following resources:
+## Workout Library
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The workout library displays useful information for each exercise, including:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Workout name
+- Muscle groups
+- Equipment
+- Difficulty
+- Duration
+- Calories burned
+- Rating
 
-## Deploy on Vercel
+Each workout also has a dedicated details page with its description, sets, reps, and instructions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Today's Plan
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Users can build their daily workout routine by adding workouts from the workout details page.
+
+The plan includes:
+
+- Total number of workouts
+- Total duration
+- Total calories
+- Remove workout option
+- Mark as completed option
+- Workout sorting
+
+A maximum of 5 workouts can be added to the daily plan.
+
+## Saved Workouts
+
+Users can save workouts they want to complete later.
+
+Saved workouts are stored in the browser using localStorage, so they remain available after refreshing the page.
+
+## Sorting
+
+The Plan page provides three sorting options:
+
+- Duration
+- Calories
+- Rating
+
+Selecting an option changes the order of the existing workout cards.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- React Context API
+- React Icons
+- React Hot Toast
+- REST API
+- localStorage
+- Git and GitHub
+
+## API
+
+FitLog uses a REST API to retrieve workout data.
+
+### All Workouts
+
+https://api.abcz.workers.dev/api/fitlog
+
+### Single Workout
+
+https://api.abcz.workers.dev/api/fitlog/:id
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── components/
+│   │   ├── home/
+│   │   │   ├── WorkoutCard.tsx
+│   │   │   ├── WorkoutAction.tsx
+│   │   │   ├── Workouts.tsx
+│   │   │   └── SortBy.tsx
+│   │   │
+│   │   └── share/
+│   │       ├── Navbar.tsx
+│   │       └── Footer.tsx
+│   │
+│   ├── Plan/
+│   │   ├── page.tsx
+│   │   └── sorted.tsx
+│   │
+│   ├── Workout/
+│   │   └── [id]/
+│   │       └── page.tsx
+│   │
+│   ├── page.tsx
+│   ├── layout.tsx
+│   └── globals.css
+│
+├── context/
+│   └── WorkoutContext.tsx
+│
+├── lib/
+│   └── api.ts
+│
+└── types/
+    └── Workout.ts
