@@ -1,7 +1,6 @@
 "use client"
 import { useWorkout } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
-import React from 'react';
 import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import  toast  from "react-hot-toast";
 
@@ -56,8 +55,8 @@ const WorkoutAction = ({workout}: WorkoutActionProps) => {
     return (
         <div className='flex flex-col gap-3 sm:flex-row'>
 
-            <button onClick={handleAddPlan} disabled={plan.length >= 5} 
-           className='rounded-lg bg-red-800 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:coursor-not-allowed disabled:opacity-40'>
+            <button onClick={handleAddPlan}
+           className='rounded-lg bg-red-800 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40'>
 
             {alreadyInPlan ? "Already in Plan" : "Add to Today's Plan"}
             </button>

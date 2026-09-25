@@ -25,17 +25,24 @@ const PlanPage = () => {
     const currentData = activeTab === "plan" ? plan : saved; 
 
     const [sort, setSort] = useState("duration");
+    console.log("SORT:", sort);
+console.log("DATA:", currentData);
     const sortedData = [...currentData].sort((a, b) => {
-    if (sort === "shortest") {
+    if (sort === "duration") {
         return a.duration - b.duration;
     }
 
-    if (sort === "longest") {
-        return b.duration - a.duration;
+    if (sort === "calories") {
+        return b.caloriesBurned - a.caloriesBurned;
+    }
+
+    if(sort === "rating"){
+        return b.rating - a.rating
     }
 
     return 0;
 });
+
 
     const totalMinutes = plan.reduce((total, workout) => total + workout.duration, 0);
 
@@ -130,7 +137,7 @@ const PlanPage = () => {
                         Saved
                     </Link>
                 </div>
-                    <SortBy sort={sort} setSort={setSort}></SortBy>
+                    <SortBy sort={sort} setSort={setSort} />
                 </div>
 
                 {currentData.length === 0 ? (
@@ -166,13 +173,13 @@ const PlanPage = () => {
                                 className="flex flex-col gap-5 rounded-xl border border-gray-300 bg-blue-200 p-4 sm:flex-row sm:items-center"
                             >
 
-                                {/* Image */}
                                 <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-lg sm:h-28 sm:w-40">
 
                                     <Image
                                         src={workout.image}
                                         alt={workout.name}
                                         fill
+                                         sizes="(max-width: 640px) 100vw, 160px"
                                         className="object-cover"
                                     />
 
