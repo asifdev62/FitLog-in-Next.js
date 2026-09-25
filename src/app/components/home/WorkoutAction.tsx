@@ -63,7 +63,7 @@ const WorkoutAction = ({workout}: WorkoutActionProps) => {
             </button>
 
 
-            <button onClick={handleSave} className='flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-5 py-3 font-bold text-white transition hover:bg-gray-900'>
+            <button onClick={handleSave} className='flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-5 py-3 font-bold text-gray-800 hover:text-white transition hover:bg-gray-900'>
 
                 <MdOutlineBookmarkAdd size={22} />
 
