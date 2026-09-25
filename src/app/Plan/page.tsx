@@ -4,9 +4,10 @@ import { Workout } from '@/types/Workout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import toast from "react-hot-toast";
+import { useState } from 'react';
+import SortBy from './sorted';
 const PlanPage = () => {
     const {
         plan,
@@ -21,7 +22,20 @@ const PlanPage = () => {
     const activeTab = searchParams.get("tab") === "saved" ? "saved" : "plan"
 
 
-    const currentData = activeTab === "plan" ? plan : saved;
+    const currentData = activeTab === "plan" ? plan : saved; 
+
+    const [sort, setSort] = useState("duration");
+    const sortedData = [...currentData].sort((a, b) => {
+    if (sort === "shortest") {
+        return a.duration - b.duration;
+    }
+
+    if (sort === "longest") {
+        return b.duration - a.duration;
+    }
+
+    return 0;
+});
 
     const totalMinutes = plan.reduce((total, workout) => total + workout.duration, 0);
 
@@ -93,7 +107,8 @@ const PlanPage = () => {
                 </div>
 
 
-                <div className="mt-20 flex w-full max-w-md gap-2 rounded-xl border border-gray-200 bg-red-200 p-1">
+                <div className="mt-20 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ">
+                    <div className="flex w-full sm:max-w-md gap-2 rounded-xl border border-gray-200 bg-red-200 p-1">
 
                     <Link
                         href="/Plan?tab=plan"
@@ -114,13 +129,13 @@ const PlanPage = () => {
                     >
                         Saved
                     </Link>
-
                 </div>
-
+                    <SortBy sort={sort} setSort={setSort}></SortBy>
+                </div>
 
                 {currentData.length === 0 ? (
 
-                    <div className="py-24 text-center bg-blue-200 mt-10 rounded-xl border border-dashed border-blue-500">
+                    <div className="py-24 text-center bg-blue-200 mt-10 rounded-xl border border-dashed border-blue-700">
 
                         <h2 className="text-3xl font-black text-gray-800 uppercase">
                             Nothing Here Yet
@@ -144,7 +159,7 @@ const PlanPage = () => {
 
                     <div className="mt-8 space-y-4">
 
-                        {currentData.map((workout) => (
+                        {sortedData.map((workout) => (
 
                             <div
                                 key={workout.id}
