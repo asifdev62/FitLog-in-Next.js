@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   title: "Fitlog",
   description: "Your workout tracking app",
 
-  icons:{
-    icon:"/favicon.jpg",
-  }
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
