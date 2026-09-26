@@ -1,8 +1,9 @@
 "use client"
 import { useWorkout } from '@/context/WorkoutContext';
 import { Workout } from '@/types/Workout';
-import { MdOutlineBookmarkAdd } from 'react-icons/md';
 import  toast  from "react-hot-toast";
+import { IoSaveSharp } from 'react-icons/io5';
+import { FaAddressBook } from 'react-icons/fa';
 
 
 interface WorkoutActionProps{
@@ -56,7 +57,9 @@ const WorkoutAction = ({workout}: WorkoutActionProps) => {
         <div className='flex flex-col gap-3 sm:flex-row'>
 
             <button onClick={handleAddPlan}
-           className='rounded-lg bg-red-800 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40'>
+           className='flex items-center justify-center gap-2 rounded-lg bg-red-800 px-5 py-3 font-bold text-white transition hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-40'>
+
+            <FaAddressBook size={20} />
 
             {alreadyInPlan ? "Already in Plan" : "Add to Today's Plan"}
             </button>
@@ -64,7 +67,8 @@ const WorkoutAction = ({workout}: WorkoutActionProps) => {
 
             <button onClick={handleSave} className='flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-5 py-3 font-bold text-gray-800 hover:text-white transition hover:bg-gray-900'>
 
-                <MdOutlineBookmarkAdd size={22} />
+                <IoSaveSharp size={20} />
+
 
                 {alreadySaved ? "Already Saved" : "Save for Later"}
 

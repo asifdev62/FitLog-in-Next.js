@@ -8,6 +8,7 @@ import { FaStar } from 'react-icons/fa';
 import toast from "react-hot-toast";
 import { useState } from 'react';
 import SortBy from './sorted';
+import { IoLogOutOutline } from 'react-icons/io5';
 const PlanPage = () => {
     const {
         plan,
@@ -153,12 +154,15 @@ console.log("DATA:", currentData);
                             for later.
                         </p>
 
+            
                         <Link
                             href="/"
-                            className="mt-6 inline-block rounded-lg bg-red-800 px-6 py-3 font-bold text-white uppercase"
+                            className=" mt-6 inline-flex items-center gap-2 rounded-lg bg-red-800 px-6 py-3 font-bold text-white uppercase"
                         >
-                            Go To Workouts
+                          <IoLogOutOutline size={20}/>  Go To Workouts
                         </Link>
+                        
+            
 
                     </div>
 

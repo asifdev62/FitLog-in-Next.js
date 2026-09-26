@@ -49,13 +49,13 @@ const Navbar = () => {
             {isOpen && (
                 <div className='border-t border-gray-100 pb-4 pt-4 md:hidden'>
                     <div className='flex flex-col gap-3 text-sm font-semibold text-red-700'>
-                        <a className='rounded-lg bg-red-100 px-4 py-2' href="" onClick={() => setIsOpen(false)}>Workouts</a>
+                        <Link className='rounded-lg bg-red-100 px-4 py-2' href="/" onClick={() => setIsOpen(false)}>Workouts</Link>
 
-                        <a className='px-4 py-2' onClick={() => setIsOpen(false)} href="">Plan</a>
+                        <Link className='px-4 py-2' onClick={() => setIsOpen(false)} href="/Plan">My Plan</Link>
 
-                        <a className='px-4 py-2' onClick={() => setIsOpen(false)} href="">My Plan</a>
+                        <Link className='px-4 py-2' onClick={() => setIsOpen(false)} href="/Plan?tab=plan">Plan</Link>
 
-                        <a className='px-4 py-2' onClick={() => setIsOpen(false)} href="">Saved</a>
+                        <Link className='px-4 py-2' onClick={() => setIsOpen(false)} href="/Plan?tab=saved">Saved</Link>
 
                     </div>
                 </div>
