@@ -1,7 +1,5 @@
 import { Workout } from "@/types/Workout";
 
-// const API_URL = "https://api.abcz.workers.dev/api/fitlog";
-
  const API_URL = "https://api.api-store.workers.dev/api/fitlog";
 
 export const getWorkouts = async (): Promise<Workout[]> => {
