@@ -5,10 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 import toast from "react-hot-toast";
-import { useState } from 'react';
+import {useState } from 'react';
 import SortBy from './sorted';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { useSearchParams } from 'next/navigation';
 const PlanPage = () => {
     const {
         plan,
@@ -18,19 +17,14 @@ const PlanPage = () => {
         markAsDone,
         addToPlan,
     } = useWorkout();
+   
+    const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
-
-const searchParams = useSearchParams();
-
-const tab = searchParams.get("tab");
-
-const activeTab: "plan" | "saved" = tab === "saved" ? "saved" : "plan";
-
-const currentData = activeTab === "plan" ? plan : saved;
+    const currentData = activeTab === "plan" ? plan : saved;
 
     const [sort, setSort] = useState("duration");
     console.log("SORT:", sort);
-    console.log("DATA:", currentData);
+console.log("DATA:", currentData);
     const sortedData = [...currentData].sort((a, b) => {
     if (sort === "duration") {
         return a.duration - b.duration;
@@ -121,24 +115,24 @@ const currentData = activeTab === "plan" ? plan : saved;
                 <div className="mt-20 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ">
                     <div className="flex w-full sm:max-w-md gap-2 rounded-xl border border-gray-200 bg-red-200 p-1">
 
-                    <Link href="/Plan?tab=plan"
+                    <button onClick={()=> setActiveTab("plan")}
                         className={`flex-1 rounded-lg px-5 py-3 font-bold text-center transition ${activeTab === "plan"
                                 ? "bg-red-800 text-white shadow"
                                 : "text-gray-800 hover:text-white"
                             }`}
                     >
                         Today&apos;s Plan
-                    </Link>
+                    </button>
 
-                    <Link 
-                    href = "/Plan?tab=saved"
+                    <button 
+                        onClick={() => setActiveTab("saved")}
                         className={`flex-1 rounded-lg px-5 py-3 text-center font-bold transition ${activeTab === "saved"
                                 ? "bg-red-800 text-white shadow"
                                 : "text-gray-800 hover:text-white"
                             }`}
                     >
                         Saved
-                    </Link>
+                    </button>
                 </div>
                     <SortBy sort={sort} setSort={setSort} />
                 </div>
