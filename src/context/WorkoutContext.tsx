@@ -6,8 +6,7 @@ import {
     createContext,
     ReactNode,
     useContext,
-    useEffect,
-    useState,
+    useSyncExternalStore,
 } from "react";
 
 interface WorkoutContextType {
@@ -22,93 +21,191 @@ interface WorkoutContextType {
 
 const WorkoutContext = createContext<WorkoutContextType | null>(null);
 
+const emptyWorkoutList : Workout[] = [];
+
+const createStore = (key: string) => {
+
+    let data: Workout[] = [];
+    let loaded = false;
+
+    const listeners = new Set<() => void>();
+
+
+  
+    const getData = () => {
+
+        if (!loaded && typeof window !== "undefined") {
+
+            const savedData = localStorage.getItem(key);
+
+            if (savedData) {
+                try {
+                    data = JSON.parse(savedData);
+                } catch {
+                    data = [];
+                }
+            }
+
+            loaded = true;
+        }
+
+        return data;
+    };
+
+
+
+    const subscribe = (listener: () => void) => {
+
+        listeners.add(listener);
+
+        return () => {
+            listeners.delete(listener);
+        };
+    };
+
+
+
+    const getSnapshot = () => {
+        return getData();
+    };
+
+
+
+    const getServerSnapshot = () => {
+        return emptyWorkoutList;
+    };
+
+
+
+    const update = (
+        callback: (previousData: Workout[]) => Workout[]
+    ) => {
+
+        const newData = callback(getData());
+
+        if (newData === data) {
+            return;
+        }
+
+        data = newData;
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(data)
+        );
+
+        listeners.forEach((listener) => {
+            listener();
+        });
+    };
+
+
+    return {
+        subscribe,
+        getSnapshot,
+        getServerSnapshot,
+        update,
+    };
+};
+
+
+
+const planStore = createStore("fitlog-plan");
+const savedStore = createStore("fitlog-saved");
+
+
+
 export const WorkoutProvider = ({
     children,
 }: {
     children: ReactNode;
 }) => {
 
-    const [plan, setPlan] = useState<Workout[]>(() => {
-        if (typeof window === "undefined") {
-            return [];
-        }
+    const plan = useSyncExternalStore(
+        planStore.subscribe,
+        planStore.getSnapshot,
+        planStore.getServerSnapshot
+    );
 
-        const data = localStorage.getItem("fitlog-plan");
 
-        return data ? JSON.parse(data) : [];
-    });
+    const saved = useSyncExternalStore(
+        savedStore.subscribe,
+        savedStore.getSnapshot,
+        savedStore.getServerSnapshot
+    );
 
-    const [saved, setSaved] = useState<Workout[]>(() => {
-        if (typeof window === "undefined") {
-            return [];
-        }
 
-        const data = localStorage.getItem("fitlog-saved");
-
-        return data ? JSON.parse(data) : [];
-    });
-
-    useEffect(() => {
-        localStorage.setItem(
-            "fitlog-plan",
-            JSON.stringify(plan)
-        );
-    }, [plan]);
-
-    useEffect(() => {
-        localStorage.setItem(
-            "fitlog-saved",
-            JSON.stringify(saved)
-        );
-    }, [saved]);
+ 
 
     const addToPlan = (workout: Workout) => {
 
-        if (plan.length >= 5) {
-            return;
-        }
+        planStore.update((previousData) => {
 
-        const alreadyExists = plan.some(
-            (item) => item.id === workout.id
-        );
+            if (previousData.length >= 5) {
+                return previousData;
+            }
 
-        if (alreadyExists) {
-            return;
-        }
+            const alreadyExists = previousData.some(
+                (item) => item.id === workout.id
+            );
 
-        setPlan((prev) => [...prev, workout]);
+            if (alreadyExists) {
+                return previousData;
+            }
+
+            return [...previousData, workout];
+        });
     };
+
 
     const removeFromPlan = (id: number) => {
-        setPlan((prev) =>
-            prev.filter((item) => item.id !== id)
+
+        planStore.update((previousData) =>
+            previousData.filter(
+                (item) => item.id !== id
+            )
         );
     };
+
+
+
 
     const saveWorkout = (workout: Workout) => {
 
-        const alreadySaved = saved.some(
-            (item) => item.id === workout.id
-        );
+        savedStore.update((previousData) => {
 
-        if (alreadySaved) {
-            return;
-        }
+            const alreadySaved = previousData.some(
+                (item) => item.id === workout.id
+            );
 
-        setSaved((prev) => [...prev, workout]);
+            if (alreadySaved) {
+                return previousData;
+            }
+
+            return [...previousData, workout];
+        });
     };
+
 
     const removeSaved = (id: number) => {
-        setSaved((prev) =>
-            prev.filter((item) => item.id !== id)
+
+        savedStore.update((previousData) =>
+            previousData.filter(
+                (item) => item.id !== id
+            )
         );
     };
 
+
     const markAsDone = (id: number) => {
-        setPlan((prev) =>
-            prev.filter((item) => item.id !== id)
+
+        planStore.update((previousData) =>
+            previousData.filter(
+                (item) => item.id !== id
+            )
         );
     };
+
 
     return (
         <WorkoutContext.Provider
@@ -127,7 +224,10 @@ export const WorkoutProvider = ({
     );
 };
 
+
+
 export const useWorkout = () => {
+
     const context = useContext(WorkoutContext);
 
     if (!context) {
@@ -138,5 +238,6 @@ export const useWorkout = () => {
 
     return context;
 };
+
 
 export default WorkoutProvider;
