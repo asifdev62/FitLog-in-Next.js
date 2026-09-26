@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { FaStar } from 'react-icons/fa';
 import toast from "react-hot-toast";
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import SortBy from './sorted';
 import { IoLogOutOutline } from 'react-icons/io5';
-const PlanPage = () => {
+const PlanContent = () => {
     const {
         plan,
         saved,
@@ -276,6 +276,21 @@ console.log("DATA:", currentData);
 
         </main >
 
+    );
+};
+
+
+const PlanPage = () => {
+    return (
+        <Suspense
+            fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                    Loading...
+                </div>
+            }
+        >
+            <PlanContent />
+        </Suspense>
     );
 };
 
