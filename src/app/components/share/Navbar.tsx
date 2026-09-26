@@ -3,13 +3,18 @@
 import { useWorkout } from '@/context/WorkoutContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false)
     const {plan, saved} = useWorkout();
+
+    useEffect(()=>{
+        setMounted(true);
+    }, []);
     return (
         <nav className='border-b border-gray-200 px-4 sm:px-6'>
             <div className='mx-auto flex max-w-7xl items-center justify-between py-4'>
@@ -31,14 +36,14 @@ const Navbar = () => {
                      <Link href="/Plan?tab=plan">
                     Plan
                     </Link>
-                    <span className='bg-blue-200 rounded-full px-2 py-1 text-xs text-gray-900'>{plan.length}</span>
+                    <span className='bg-blue-200 rounded-full px-2 py-1 text-xs text-gray-900'>{mounted ? plan.length : 0}</span>
                    </div>
 
                    <div className='flex gap-1 items-center'>
                      <Link href="/Plan?tab=saved">
                     Saved
                     </Link>
-                    <span className='bg-blue-200 rounded-full px-2 py-1 text-xs text-gray-900'>{saved.length}</span>
+                    <span className='bg-blue-200 rounded-full px-2 py-1 text-xs text-gray-900'>{mounted ? saved.length : 0}</span>
                    </div>
                 </div>
 
@@ -65,3 +70,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
