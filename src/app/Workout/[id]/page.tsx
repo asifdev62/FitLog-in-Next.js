@@ -134,7 +134,7 @@ const page = async ({ params }: WorkoutDetailsPageProps) => {
 
         </div>
 
-        {/* Instructions */}
+    
         <div className="mt-6">
           <h2 className="text-sm font-bold uppercase mb-4 text-gray-800">
             Instructions

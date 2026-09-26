@@ -2,7 +2,7 @@ import Banner from './components/home/Banner';
 import Workouts from './components/home/Workouts';
 
 const getWorkout = async()=>{
-  const response = await fetch("http://localhost:3000/data.json")
+  const response = await fetch("https://api.abcz.workers.dev/api/fitlog")
   const data = await response.json();
 
   return data;
