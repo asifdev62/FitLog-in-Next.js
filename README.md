@@ -13,6 +13,16 @@ https://github.com/asifdev62/FitLog-in-Next.js.git
 
 ---
 
+## 🖼️ Project Preview
+
+<p align="center">
+  <img
+    src="./public/fitlog-preview.png"
+    alt="FitLog application preview"
+    width="100%"
+  />
+</p>
+
 ## 📖 About FitLog
 
 FitLog is designed to make workout planning simple and organized.
